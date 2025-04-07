@@ -57,7 +57,7 @@
 
             <div class="mt-4 text-center text-sm">
                 <p class="text-gray-600">
-                    Déjà un compte? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Se connecter</a>
+                    Déjà un compte? <a href="login.php" class="font-medium text-indigo-600 hover:text-indigo-500">Se connecter</a>
                 </p>
             </div>
 

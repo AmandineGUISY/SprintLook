@@ -17,8 +17,8 @@
             </div>
             
             <nav class="hidden md:flex space-x-6">
-                <h2><a href="#" class="hover:text-blue-200 transition">Connexion</a></h2>
-                <h2><a href="#" class="hover:text-blue-200 transition">Inscription</a></h2>
+                <h2><a href="login.php" class="hover:text-blue-200 transition">Connexion</a></h2>
+                <h2><a href="register.php" class="hover:text-blue-200 transition">Inscription</a></h2>
                 <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 shadow">
                     <h2><a href="#" class="hover:text-white transition text-black">Rejoindre un salon</a></h2>
                 </div>
@@ -32,8 +32,8 @@
         </div>
         
         <div class="md:hidden bg-blue-700 hidden flex flex-col items-center p-4" id="mobileMenu">
-            <h2><a href="#" class="hover:text-blue-200 transition">Connexion</a></h2>
-            <h2><a href="#" class="hover:text-blue-200 transition">Inscription</a></h2>
+            <h2><a href="login.php" class="hover:text-blue-200 transition">Connexion</a></h2>
+            <h2><a href="register.php" class="hover:text-blue-200 transition">Inscription</a></h2>
             <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 shadow">
                 <h2><a href="#" class="hover:text-white transition text-black">Rejoindre un salon</a></h2>
             </div>
