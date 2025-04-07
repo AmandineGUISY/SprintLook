@@ -55,14 +55,21 @@
                 </button>
             </form>
 
-            <div class="mt-6 text-center text-sm">
+            <div class="mt-4 text-center text-sm">
                 <p class="text-gray-600">
                     Déjà un compte? <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Se connecter</a>
                 </p>
             </div>
-        </div>
+
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-4">
+                <div id="password-strength-bar" class="h-2.5 rounded-full" style="width: 0%;"></div>
+            </div>
+
+            <div id="password-strength-text" class="text-sm mt-1"></div>
+            </div>
     </div>
 </div>
 
 <script src="Register/register.js"></script>
+<script src="Register/password.js"></script>
 <?php require_once "Footer/footer.php"?>
