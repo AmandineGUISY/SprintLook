@@ -7,7 +7,7 @@ class User {
     }
 
     // register of a new user
-    public function registerUser($email, $password, $name, $first_name) {
+    public function registerUser($email, $password, $pseudo) {
         try {
             // Verification if the email is already existing
             $stmt = $this->db->prepare("SELECT 1 FROM users WHERE email = :email");
@@ -52,7 +52,7 @@ class User {
 
             if (password_verify($password, $p['password'])) {
                 // if the password is the same as the password found with the mail, then it start a session
-                $stmt = $this->db->prepare("SELECT user_id FROM users WHERE email = :email");
+                $stmt = $this->db->prepare("SELECT id FROM users WHERE email = :email");
                 $stmt->execute(['email' => $email]);
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
