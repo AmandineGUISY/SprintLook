@@ -1,10 +1,5 @@
 <?php require_once "Header/header.php";?>
 
-<?php
-session_start();
-var_dump($_SESSION);
-?>
-
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-center text-black mb-6">Se connecter</h2>
