@@ -1,6 +1,6 @@
 async function loadRooms(searchTerm = '', sortBy = 'date-desc') {
     try {
-        // Afficher le loader
+        // display the loading screen
         document.getElementById('roomsContainer').innerHTML = `
             <div class="text-center py-8 text-gray-500">
                 <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
@@ -8,12 +8,12 @@ async function loadRooms(searchTerm = '', sortBy = 'date-desc') {
             </div>
         `;
 
-        // Préparer les paramètres
+        // starts the params
         const params = new URLSearchParams({
             sort: sortBy
         });
         
-        if (searchTerm) {
+        if (searchTerm) { 
             params.append('search', searchTerm);
         }
 
@@ -24,7 +24,7 @@ async function loadRooms(searchTerm = '', sortBy = 'date-desc') {
             throw new Error(result.message || 'Erreur lors du chargement des salons');
         }
 
-        // Afficher les résultats
+        // if there is no rooms
         if (result.count === 0) {
             document.getElementById('roomsContainer').innerHTML = `
                 <div class="col-span-full text-center py-8 text-gray-500">
@@ -57,7 +57,9 @@ function displayRooms(rooms) {
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-semibold text-gray-800">${room.name}</h3>
-                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">${room.code}</span>
+                    <button onclick="deleteRoom(${room.id})" class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </div>
                 <div class="flex items-center text-gray-500 text-sm mb-4">
                     <i class="far fa-calendar-alt mr-2"></i>
@@ -77,17 +79,28 @@ function displayRooms(rooms) {
     `).join('');
 }
 
-function escapeHtml(unsafe) {
-    return unsafe
-        .toString()
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+async function deleteRoom(roomId) {
+    if (!confirm('Voulez-vous vraiment supprimer ce salon ?')) return;
+    
+    try {
+        const response = await fetch('Room/room_delete.php', {
+            method: 'DELETE',
+            body: JSON.stringify({ room_id: roomId })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            loadRooms();
+        } else {
+            alert('Erreur lors de la suppression');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Erreur lors de la suppression');
+    }
 }
 
-// Événements
 document.getElementById('filterBtn').addEventListener('click', () => {
     const searchTerm = document.getElementById('searchInput').value;
     const sortBy = document.getElementById('sortBy').value;
@@ -102,16 +115,6 @@ document.getElementById('searchInput').addEventListener('keyup', (e) => {
     }
 });
 
-// Fonctions des boutons
-function showRoomMembers(roomId) {
-    console.log('Voir membres du salon', roomId);
-}
-
-function inviteToRoom(roomId) {
-    console.log('Inviter au salon', roomId);
-}
-
-// Chargement initial
 document.addEventListener('DOMContentLoaded', () => {
     loadRooms();
 });
