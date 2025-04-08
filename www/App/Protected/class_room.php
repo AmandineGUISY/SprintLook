@@ -73,4 +73,18 @@ class Room {
         $stmt = $this->db->prepare("DELETE FROM rooms WHERE id = :room_id");
         return $stmt->execute([':room_id' => $roomId]);
     }
+
+    public function createRoom($userId, $roomName) {
+
+        $code = substr(strtoupper(uniqid()), 0, 8);
+        
+        $stmt = $this->db->prepare("INSERT INTO rooms (name, code, user_id) VALUES (:name, :code, :user_id)");
+        $stmt->execute([
+            ':name' => $roomName,
+            ':code' => $code,
+            ':user_id' => $userId
+        ]);
+        
+        return $this->db->lastInsertId();
+    }
 }
