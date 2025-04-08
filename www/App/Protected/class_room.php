@@ -15,7 +15,6 @@ class Room {
         $query = "SELECT
                 r.id,
                 r.name,
-                r.code,
                 r.created_at,
                 (SELECT COUNT(*) FROM room_members rm WHERE rm.room_id = r.id) as member_count 
                 FROM rooms r
@@ -59,5 +58,19 @@ class Room {
             'data' => $rooms,
             'count' => count($rooms)
         ];
+    }
+
+    public function deleteRoom($roomId, $userId) {
+        // verify if the user is the owner
+        $stmt = $this->db->prepare("SELECT user_id FROM rooms WHERE id = :room_id");
+        $stmt->execute([':room_id' => $roomId]);
+        $ownerId = $stmt->fetchColumn();
+
+        if ($ownerId != $userId) {
+            throw new Exception('Action non autorisée');
+        }
+
+        $stmt = $this->db->prepare("DELETE FROM rooms WHERE id = :room_id");
+        return $stmt->execute([':room_id' => $roomId]);
     }
 }
