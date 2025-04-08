@@ -1,0 +1,63 @@
+<?php
+class Room {
+    private $db;
+
+    public function __construct($pdo) {
+        $this->db = $pdo;
+    }
+
+    public function getRooms($userId, $searchTerm = '', $sortBy = 'date-desc') {
+
+        if ($userId <= 0) {
+            throw new Exception('ID utilisateur invalide');
+        }
+
+        $query = "SELECT
+                r.id,
+                r.name,
+                r.code,
+                r.created_at,
+                (SELECT COUNT(*) FROM room_members rm WHERE rm.room_id = r.id) as member_count 
+                FROM rooms r
+                WHERE r.user_id = :user_id";
+
+        $params = [':user_id' => $userId];
+
+        // Addition of the search like filter
+        if (!empty($searchTerm)) {
+            $query .= " AND r.name LIKE :search";
+            $params[':search'] = '%' . $searchTerm . '%';
+        }
+
+        // Addition of the Order By in function of the filter
+        switch ($sortBy) {
+            case 'date-asc':
+                $query .= " ORDER BY r.created_at ASC";
+                break;
+            case 'name-asc':
+                $query .= " ORDER BY r.name ASC";
+                break;
+            case 'name-desc':
+                $query .= " ORDER BY r.name DESC";
+                break;
+            default: // 'date-desc'
+                $query .= " ORDER BY r.created_at DESC";
+        }
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
+
+        $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // writing correctly the date data
+        foreach ($rooms as &$room) {
+            $room['created_at'] = date('d/m/Y à H:i', strtotime($room['created_at']));
+        }
+
+        return [
+            'success' => true,
+            'data' => $rooms,
+            'count' => count($rooms)
+        ];
+    }
+}
