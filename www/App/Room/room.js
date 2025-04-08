@@ -1,13 +1,5 @@
 async function loadRooms(searchTerm = '', sortBy = 'date-desc') {
     try {
-        // display the loading screen
-        document.getElementById('roomsContainer').innerHTML = `
-            <div class="text-center py-8 text-gray-500">
-                <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                <p>Chargement des salons...</p>
-            </div>
-        `;
-
         // starts the params
         const params = new URLSearchParams({
             sort: sortBy
@@ -57,9 +49,15 @@ function displayRooms(rooms) {
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-semibold text-gray-800">${room.name}</h3>
-                    <button onclick="deleteRoom(${room.id})" class="text-red-600 hover:text-red-800">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+                    <div>
+                        <button onclick="openEditRoomModal(${room.id}, '${room.name}')"
+                            class="text-yellow-600 hover:text-yellow-800 px-1">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteRoom(${room.id})" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="flex items-center text-gray-500 text-sm mb-4">
                     <i class="far fa-calendar-alt mr-2"></i>
