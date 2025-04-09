@@ -87,4 +87,27 @@ class Room {
         
         return $this->db->lastInsertId();
     }
+
+    public function updateRoom($roomId, $userId, $newName) {
+        // verify if the user_id is the owner of the room
+        $stmt = $this->db->prepare("SELECT user_id FROM rooms WHERE id = :room_id");
+        $stmt->execute([':room_id' => $roomId]);
+        $ownerId = $stmt->fetchColumn();
+    
+        if ($ownerId != $userId) {
+            throw new Exception('Vous n êtes pas autorisé à modifier ce salon');
+        }
+    
+        $stmt = $this->db->prepare("UPDATE rooms SET name = :name WHERE id = :room_id");
+        $success = $stmt->execute([
+            ':name' => $newName,
+            ':room_id' => $roomId
+        ]);
+    
+        if (!$success) {
+            throw new Exception('Échec de la mise à jour du salon');
+        }
+    
+        return true;
+    }
 }
