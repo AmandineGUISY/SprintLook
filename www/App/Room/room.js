@@ -50,7 +50,7 @@ function displayRooms(rooms) {
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-semibold text-gray-800">${room.name}</h3>
                     <div>
-                        <button onclick="openEditRoomModal(${room.id}, '${room.name}')"
+                        <button onclick="roomUpdate.open('${room.name.replace(/'/g, "\\'")}', ${room.id})"
                             class="text-yellow-600 hover:text-yellow-800 px-1">
                             <i class="fas fa-edit"></i>
                         </button>
