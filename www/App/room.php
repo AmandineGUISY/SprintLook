@@ -14,8 +14,17 @@ session_start();
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
         <div class="p-6">
             <h3 class="text-xl font-bold mb-4">Créer un nouveau salon</h3>
-            <input type="text" id="newRoomName" placeholder="Nom du salon" 
-                   class="w-full p-3 border rounded-lg mb-4 focus:ring-1">
+            <input  type="text" 
+                    id="newRoomName"
+                    placeholder="Nom du salon" 
+                    class="w-full p-3 border rounded-lg mb-4 focus:ring-1"
+                    maxlength="20"
+                   >
+
+            <div class="text-right text-sm text-gray-500 pb-3">
+                <span id="charCount">0</span>/20 caractères
+            </div>
+
             <div class="flex justify-end gap-3">
                 <button class="px-4 py-2 border rounded-lg cancel-btn">Annuler</button>
                 <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 create-btn">
@@ -30,7 +39,17 @@ session_start();
 <div id="openUpdateRoom" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
         <h3 class="text-xl font-bold mb-4">Modifier un salon</h3>
-        <input type="text" id="updateRoomName" placeholder="Nouveau nom" class="w-full p-3 border rounded-lg mb-4 focus:ring-1">
+        <input  type="text"
+                id="updateRoomName"
+                placeholder="Nouveau nom"
+                class="w-full p-3 border rounded-lg mb-4 focus:ring-1"
+                maxlength="20"
+                >
+
+        <div class="text-right text-sm text-gray-500 pb-3">
+            <span id="charCountUpdate">0</span>/20 caractères
+        </div>
+
         <div class="flex justify-end gap-3">
             <button class="px-4 py-2 border rounded-lg cancel-btn">Annuler</button>
             <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 create-btn">
@@ -95,5 +114,6 @@ session_start();
 <script src="Room/room_update.js"></script>
 <script src="Room/room.js"></script>
 <script src="Room/room_create.js"></script>
+<script src="Room/room_char_count.js"></script>
 
 <?php require_once "Footer/footer.php"?>
