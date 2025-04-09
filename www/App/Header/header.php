@@ -8,6 +8,7 @@
     <link rel="icon" href="/Resources/Images/SprintLook.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="/Resources/Images/SprintLook.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Header/style.css">
 </head>
 
 <body>
