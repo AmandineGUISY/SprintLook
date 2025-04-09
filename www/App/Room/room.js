@@ -59,17 +59,21 @@ function displayRooms(rooms) {
                         </button>
                     </div>
                 </div>
-                <div class="flex items-center text-gray-500 text-sm mb-4">
-                    <i class="far fa-calendar-alt mr-2"></i>
-                    <span>Créé le ${room.created_at}</span>
+                <div class="flex justify-between items-center text-gray-500 text-sm mb-4">
+                    <div>
+                        <i class="far fa-calendar-alt mr-2"></i>
+                        <span>Créé le ${room.created_at}</span>
+                    </div>
+                    <div class="px-3 py-1 bg-blue-200 rounded-lg text-black" ><h3>${room.code}</h3></div>
                 </div>
+                
                 <div class="flex justify-between items-center">
                     <div class="text-blue-600 text-sm font-medium">
                         <i class="fas fa-users mr-1"></i>
                         <span>${room.member_count} participant(s)</span>
                     </div>
                     <button onclick="inviteToRoom(${room.id})" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
-                        <i class="fas fa-user-plus mr-1"></i> Inviter
+                        <h3>Rejoindre</h3>
                     </button>
                 </div>
             </div>
