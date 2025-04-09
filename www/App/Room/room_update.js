@@ -17,6 +17,9 @@ class RoomUpdate {
         // create button
         document.querySelector('#openUpdateRoom .create-btn').addEventListener('click', () => this.updateRoom());
         
+        this.input.addEventListener('input', () => {
+            this.counter.textContent = this.input.value.trim().length;
+        });
     }
 
     open(name, id) {
@@ -27,10 +30,6 @@ class RoomUpdate {
         this.input.value = name;
         this.counter.textContent = name.length;
         this.input.focus();
-        
-        this.input.addEventListener('input', () => {
-            this.counter.textContent = this.input.value.length;
-        });
     }
 
     close() {
