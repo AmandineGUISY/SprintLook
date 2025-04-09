@@ -2,8 +2,11 @@ class RoomUpdate {
     constructor() {
         this.modal = document.getElementById('openUpdateRoom');
         this.input = document.getElementById('updateRoomName');
+
         this.currentRoomId = null;
         this.currentRoomName = null;
+
+        this.counter = document.getElementById('charCountUpdate');
         this.initEvents();
     }
 
@@ -13,14 +16,21 @@ class RoomUpdate {
         
         // create button
         document.querySelector('#openUpdateRoom .create-btn').addEventListener('click', () => this.updateRoom());
+        
     }
 
     open(name, id) {
         this.currentRoomId = id;
         this.currentRoomName = name
         this.modal.classList.remove('hidden');
-        this.input.focus();
+        
         this.input.value = name;
+        this.counter.textContent = name.length;
+        this.input.focus();
+        
+        this.input.addEventListener('input', () => {
+            this.counter.textContent = this.input.value.length;
+        });
     }
 
     close() {
