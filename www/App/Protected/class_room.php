@@ -13,6 +13,7 @@ class Room {
         }
 
         $query = "SELECT
+                r.code,
                 r.id,
                 r.name,
                 r.created_at,
