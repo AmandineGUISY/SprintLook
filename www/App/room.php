@@ -114,6 +114,5 @@ session_start();
 <script src="Room/room_update.js"></script>
 <script src="Room/room.js"></script>
 <script src="Room/room_create.js"></script>
-<script src="Room/room_char_count.js"></script>
 
 <?php require_once "Footer/footer.php"?>
