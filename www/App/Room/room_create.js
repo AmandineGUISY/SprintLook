@@ -2,6 +2,9 @@ class RoomModal {
     constructor() {
         this.modal = document.getElementById('addRoomModal');
         this.input = document.getElementById('newRoomName');
+
+        this.counter = document.getElementById('charCount');
+
         this.initEvents();
     }
 
@@ -11,12 +14,17 @@ class RoomModal {
         
         // create button
         document.querySelector('#addRoomModal .create-btn').addEventListener('click', () => this.createRoom());
+
+        this.input.addEventListener('input', () => {
+            this.counter.textContent = this.input.value.trim().length;
+        });
     }
 
     open() {
         this.modal.classList.remove('hidden');
         this.input.focus();
         this.input.value = '';
+        this.counter.textContent = '0';
     }
 
     close() {
