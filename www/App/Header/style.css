@@ -1,0 +1,37 @@
+@media (max-width: 768px) {
+    .column > div {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.column { min-height: 500px; }
+
+.post-it {
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+
+.post-it:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+}
+
+.post-it.positive {
+    background-color:rgb(255, 255, 255);
+    border-top: 4px solid #4ade80;
+}
+
+.post-it.negative {
+    background-color:rgb(255, 255, 255);
+    border-top: 4px solid #f87171;
+}
+
+.post-it.improve {
+    background-color:rgb(255, 255, 255);
+    border-top: 4px solid #fb923c;
+}
