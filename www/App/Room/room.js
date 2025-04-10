@@ -72,9 +72,9 @@ function displayRooms(rooms) {
                         <i class="fas fa-users mr-1"></i>
                         <span>${room.member_count} participant(s)</span>
                     </div>
-                    <button onclick="inviteToRoom(${room.id})" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                    <a href="retrospective.php?room_id=${room.id}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                         <h3>Rejoindre</h3>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
