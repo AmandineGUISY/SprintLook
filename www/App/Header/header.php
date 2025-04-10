@@ -13,33 +13,44 @@
 
 <body>
     <header class="bg-blue-500 text-white shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 py-1 shadow">
-                <img src="/Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-10 w-10 rounded">
-                <h1><span class="text-xl font-bold text-black">SprintLook</span></h1>
-            </div>
-            
-            <nav class="hidden md:flex space-x-6">
-                <h2><a href="login.php" class="hover:text-blue-200 transition">Connexion</a></h2>
-                <h2><a href="register.php" class="hover:text-blue-200 transition">Inscription</a></h2>
-                <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 shadow">
-                    <h2><a href="#" class="hover:text-white transition text-black">Rejoindre un salon</a></h2>
+        <nav class="bg-blue-500 text-white shadow-lg">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 py-1 shadow">
+                    <img src="/Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-10 w-10 rounded">
+                    <span class="text-xl text-black font-bold">SprintLook</span>
                 </div>
-            </nav>
-            
-            <button class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </div>
-        
-        <div class="md:hidden bg-blue-700 hidden flex flex-col items-center p-4" id="mobileMenu">
-            <h2><a href="login.php" class="hover:text-blue-200 transition">Connexion</a></h2>
-            <h2><a href="register.php" class="hover:text-blue-200 transition">Inscription</a></h2>
-            <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 shadow">
-                <h2><a href="#" class="hover:text-white transition text-black">Rejoindre un salon</a></h2>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.php" class="hover:underline font-medium">Accueil</a>
+                    <a href="room.php" class="hover:underline">Mes rétrospectives</a>
+                    <a href="join.php" class="hover:underline">Rejoindre un salon</a>
+                    <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition ml-4">Se connecter</a>
+                </div>
+                
+                <!-- Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="hamburger focus:outline-none">
+                        <span class="hamburger-top"></span>
+                        <span class="hamburger-middle"></span>
+                        <span class="hamburger-bottom"></span>
+                    </button>
+                </div>
             </div>
-        </div>
+            
+            <!-- Menu Mobile Dropdown -->
+            <div class="md:hidden">
+                <div id="menu" class="hidden absolute flex-col items-center py-8 space-y-6 bg-blue-500 w-full left-0 right-0 z-50">
+                    <a href="index.php" class="hover:underline">Accueil</a>
+                    <a href="room.php" class="hover:underline">Mes rétrospectives</a>
+                    <a href="join.php" class="hover:underline">Rejoindre un salon</a>
+                    <a href="login.php" class="bg-white text-blue-600 px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition">Se connecter</a>
+                </div>
+            </div>
+        </nav>
     </header>
+
+   
+
+
 
