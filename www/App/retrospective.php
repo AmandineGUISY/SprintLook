@@ -137,36 +137,7 @@ require_once 'Retrospective/retrospective.php';
     </div>
 </main>
 
-<script>
-// Gestion des boutons de suppression
-document.querySelectorAll('.delete-postit').forEach(button => {
-    button.addEventListener('click', async function() {
-        const postitId = this.getAttribute('data-id');
-        
-        if (confirm('Voulez-vous vraiment supprimer ce post-it ?')) {
-            try {
-                const response = await fetch('Retrospective/delete_postit.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `id=${postitId}`
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    this.closest('.post-it').remove();
-                } else {
-                    alert('Erreur: ' + (result.error || 'Échec de la suppression'));
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Une erreur est survenue');
-            }
-        }
-    });
-});
-</script>
+<script src="Retrospective/delete_postit.js" ></script>
+<script src="Retrospective/retrospective.js"></script>
 
 <?php include 'Footer/footer.php'; ?>
