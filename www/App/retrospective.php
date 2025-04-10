@@ -55,7 +55,14 @@ require_once 'Retrospective/retrospective.php';
             </h2>
             <div class="grid grid-cols-2 gap-4" id="positif-column">
                 <?php foreach ($positive as $msg): ?>
-                    <div class="post-it positive p-4 rounded-lg">
+                    <div class="post-it positive p-4 rounded-lg bg-white shadow-md relative hover:shadow-lg transition-shadow">
+                        <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                            <button class="delete-postit absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors"
+                                    data-id="<?= $msg['id'] ?>"
+                                    title="Supprimer">
+                                <i class="fas fa-trash text-sm"></i>
+                            </button>
+                        <?php endif; ?>
                         <div class="flex items-start mb-2">
                             <img src="<?= htmlspecialchars($msg['author_image'] ?? '/Resources/Images/SprintLook.png') ?>" 
                                 alt="Profile" class="w-8 h-8 rounded-full mr-2">
@@ -77,7 +84,14 @@ require_once 'Retrospective/retrospective.php';
             </h2>
             <div class="grid grid-cols-2 gap-4" id="a_ameliorer-column">
                 <?php foreach ($improve as $msg): ?>
-                    <div class="post-it improve p-4 rounded-lg">
+                    <div class="post-it improve p-4 rounded-lg bg-white shadow-md relative hover:shadow-lg transition-shadow">
+                        <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                            <button class="delete-postit absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors"
+                                    data-id="<?= $msg['id'] ?>"
+                                    title="Supprimer">
+                                <i class="fas fa-trash text-sm"></i>
+                            </button>
+                        <?php endif; ?>
                         <div class="flex items-start mb-2">
                             <img src="<?= htmlspecialchars($msg['author_image'] ?? '/Resources/Images/SprintLook.png') ?>" 
                                 alt="Profile" class="w-8 h-8 rounded-full mr-2">
@@ -99,7 +113,14 @@ require_once 'Retrospective/retrospective.php';
             </h2>
             <div class="grid grid-cols-2 gap-4" id="negatif-column">
                 <?php foreach ($negative as $msg): ?>
-                    <div class="post-it negative p-4 rounded-lg">
+                    <div class="post-it negative p-4 rounded-lg bg-white shadow-md relative hover:shadow-lg transition-shadow">
+                        <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                            <button class="delete-postit absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors"
+                                    data-id="<?= $msg['id'] ?>"
+                                    title="Supprimer">
+                                <i class="fas fa-trash text-sm"></i>
+                            </button>
+                        <?php endif; ?>
                         <div class="flex items-start mb-2">
                             <img src="<?= htmlspecialchars($msg['author_image'] ?? '/Resources/Images/SprintLook.png') ?>" 
                                 alt="Profile" class="w-8 h-8 rounded-full mr-2">
@@ -116,6 +137,36 @@ require_once 'Retrospective/retrospective.php';
     </div>
 </main>
 
-<script src="Retrospective/retrospective.js"></script>
+<script>
+// Gestion des boutons de suppression
+document.querySelectorAll('.delete-postit').forEach(button => {
+    button.addEventListener('click', async function() {
+        const postitId = this.getAttribute('data-id');
+        
+        if (confirm('Voulez-vous vraiment supprimer ce post-it ?')) {
+            try {
+                const response = await fetch('Retrospective/delete_postit.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${postitId}`
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    this.closest('.post-it').remove();
+                } else {
+                    alert('Erreur: ' + (result.error || 'Échec de la suppression'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Une erreur est survenue');
+            }
+        }
+    });
+});
+</script>
 
 <?php include 'Footer/footer.php'; ?>
