@@ -26,4 +26,7 @@ $messages = $retro->getPostits($room_id);
 $positive = $retro->filterByCategory($messages, 'positif');
 $negative = $retro->filterByCategory($messages, 'negatif');
 $improve = $retro->filterByCategory($messages, 'a_ameliorer');
+
+$postits = $retro->getPostits($roomId, $_SESSION['user_id']);
+$isRoomOwner = $retro->getRoom($_SESSION['user_id'], $roomId) !== false;
 ?>
