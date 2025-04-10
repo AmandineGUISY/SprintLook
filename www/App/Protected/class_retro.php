@@ -1,0 +1,79 @@
+<?php
+class Retro {
+    private $db;
+
+    public function __construct($pdo) {
+        $this->db = $pdo;
+    }
+
+    public function getRoom($userId, $roomId) {
+        $stmt = $this->db->prepare("SELECT * FROM rooms WHERE id = ? AND user_id = ?");
+        $stmt->execute([$roomId, $userId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getPostits($roomId) {
+        $stmt = $this->db->prepare("SELECT m.*, 
+                                  COALESCE(u.pseudo, n.pseudo) as author,
+                                  COALESCE(u.image_profile, n.image_profile) as author_image
+                                  FROM messages m
+                                  LEFT JOIN users u ON m.user_id = u.id
+                                  LEFT JOIN nameless n ON m.nameless_id = n.id
+                                  WHERE m.room_id = ?
+                                  ORDER BY m.created_at DESC");
+        $stmt->execute([$roomId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createPostit($roomId, $userId, $content, $category) {
+
+        $validCategories = ['positif', 'negatif', 'a_ameliorer'];
+        if (!in_array($category, $validCategories)) {
+            throw new Exception("Catégorie invalide");
+        }
+
+        $stmt = $this->db->prepare("INSERT INTO messages 
+                                  (room_id, user_id, is_author, content, category) 
+                                  VALUES (?, ?, 1, ?, ?)");
+        $stmt->execute([$roomId, $userId, $content, $category]);
+        
+        return $this->getPostitById($this->db->lastInsertId());
+    }
+
+    public function getPostitById($id) {
+        $stmt = $this->db->prepare("SELECT m.*, 
+                                  COALESCE(u.pseudo, n.pseudo) as author,
+                                  COALESCE(u.image_profile, n.image_profile) as author_image
+                                  FROM messages m
+                                  LEFT JOIN users u ON m.user_id = u.id
+                                  LEFT JOIN nameless n ON m.nameless_id = n.id
+                                  WHERE m.id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updatePostit($id, $content, $category) {
+        // Validation de la catégorie
+        $validCategories = ['positif', 'negatif', 'a_ameliorer'];
+        if (!in_array($category, $validCategories)) {
+            throw new Exception("Catégorie invalide");
+        }
+
+        $stmt = $this->db->prepare("UPDATE messages 
+                                  SET content = ?, category = ?, updated_at = NOW() 
+                                  WHERE id = ?");
+        return $stmt->execute([$content, $category, $id]);
+    }
+
+    public function deletePostit($id) {
+        $stmt = $this->db->prepare("DELETE FROM messages WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+
+    public function filterByCategory($messages, $category) {
+        return array_filter($messages, function($msg) use ($category) {
+            return $msg['category'] === $category;
+        });
+    }
+}
+?>
