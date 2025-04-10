@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const date = new Date(message.created_at).toLocaleString('fr-FR');
 
         postIt.innerHTML = `
+            <button class="delete-postit absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors"
+                data-id="<?= $msg['id'] ?>"
+                title="Supprimer">
+                <i class="fas fa-trash text-sm"></i>
+            </button>       
             <div class="flex items-start mb-2">
                 <img src="${authorImage}" alt="Profile" class="w-8 h-8 rounded-full mr-2">
                 <span class="font-semibold">${authorName}</span>
