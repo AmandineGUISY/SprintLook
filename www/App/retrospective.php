@@ -53,7 +53,7 @@ require_once 'Retrospective/retrospective.php';
             <h2 class="text-xl font-bold text-center mb-4 text-green-700">
                 <i class="fas fa-smile mr-2"></i>Positif
             </h2>
-            <div class="grid grid-cols-2 gap-4" id="positive-column">
+            <div class="grid grid-cols-2 gap-4" id="positif-column">
                 <?php foreach ($positive as $msg): ?>
                     <div class="post-it positive p-4 rounded-lg">
                         <div class="flex items-start mb-2">
@@ -75,7 +75,7 @@ require_once 'Retrospective/retrospective.php';
             <h2 class="text-xl font-bold text-center mb-4 text-orange-700">
                 <i class="fas fa-lightbulb mr-2"></i>À améliorer
             </h2>
-            <div class="grid grid-cols-2 gap-4" id="improve-column">
+            <div class="grid grid-cols-2 gap-4" id="a_ameliorer-column">
                 <?php foreach ($improve as $msg): ?>
                     <div class="post-it improve p-4 rounded-lg">
                         <div class="flex items-start mb-2">
@@ -97,7 +97,7 @@ require_once 'Retrospective/retrospective.php';
             <h2 class="text-xl font-bold text-center mb-4 text-red-700">
                 <i class="fas fa-frown mr-2"></i>Négatif
             </h2>
-            <div class="grid grid-cols-2 gap-4" id="negative-column">
+            <div class="grid grid-cols-2 gap-4" id="negatif-column">
                 <?php foreach ($negative as $msg): ?>
                     <div class="post-it negative p-4 rounded-lg">
                         <div class="flex items-start mb-2">
