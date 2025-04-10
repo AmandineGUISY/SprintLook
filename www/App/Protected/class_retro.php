@@ -12,19 +12,24 @@ class Retro {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getPostits($roomId) {
+    public function getPostits($roomId, $currentUserId = null) {
+        // get the informations from the post it and with the join if it's the owner
+
         $stmt = $this->db->prepare("SELECT m.*, 
                                   COALESCE(u.pseudo, n.pseudo) as author,
-                                  COALESCE(u.image_profile, n.image_profile) as author_image
+                                  COALESCE(u.image_profile, n.image_profile) as author_image,
+                                  (m.user_id = ?) as is_owner,
+                                  (r.user_id = ?) as is_room_owner
                                   FROM messages m
                                   LEFT JOIN users u ON m.user_id = u.id
                                   LEFT JOIN nameless n ON m.nameless_id = n.id
+                                  LEFT JOIN rooms r ON m.room_id = r.id
                                   WHERE m.room_id = ?
                                   ORDER BY m.created_at DESC");
-        $stmt->execute([$roomId]);
+
+        $stmt->execute([$currentUserId, $currentUserId, $roomId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function createPostit($roomId, $userId, $isAuthor, $content, $category) {
 
         $stmt = $this->db->prepare("INSERT INTO messages 
