@@ -1,5 +1,6 @@
 <?php
 require_once '../Protected/database.php';
+require_once '../Protected/class_retro.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -22,18 +23,8 @@ if (empty($data['content'])) {
 
 try {
     $db = Database::getConnection();
-    
-    $stmt = $db->prepare("INSERT INTO messages (room_id, user_id, is_author, content, category) 
-                          VALUES (:room_id, :user_id, :is_author, :content, :category)");
-    $stmt->execute($data);
-    
-    $messageId = $db->lastInsertId();
-    $stmt = $db->prepare("SELECT m.*, u.pseudo as author, u.image_profile as author_image
-                          FROM messages m
-                          JOIN users u ON m.user_id = u.id
-                          WHERE m.id = ?");
-    $stmt->execute([$messageId]);
-    $message = $stmt->fetch(PDO::FETCH_ASSOC);
+    $retro = new Retro($db);
+    $message = $retro -> createPostit($data['room_id'], $data['user_id'], $data['is_author'], $data['content'], $data['category']);
     
     echo json_encode(['success' => true, 'message' => $message]);
 } catch (PDOException $e) {

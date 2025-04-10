@@ -25,31 +25,24 @@ class Retro {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function createPostit($roomId, $userId, $content, $category) {
-
-        $validCategories = ['positif', 'negatif', 'a_ameliorer'];
-        if (!in_array($category, $validCategories)) {
-            throw new Exception("Catégorie invalide");
-        }
+    public function createPostit($roomId, $userId, $isAuthor, $content, $category) {
 
         $stmt = $this->db->prepare("INSERT INTO messages 
                                   (room_id, user_id, is_author, content, category) 
-                                  VALUES (?, ?, 1, ?, ?)");
-        $stmt->execute([$roomId, $userId, $content, $category]);
+                                  VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$roomId, $userId, $isAuthor, $content, $category]);
         
         return $this->getPostitById($this->db->lastInsertId());
     }
 
     public function getPostitById($id) {
-        $stmt = $this->db->prepare("SELECT m.*, 
-                                  COALESCE(u.pseudo, n.pseudo) as author,
-                                  COALESCE(u.image_profile, n.image_profile) as author_image
-                                  FROM messages m
-                                  LEFT JOIN users u ON m.user_id = u.id
-                                  LEFT JOIN nameless n ON m.nameless_id = n.id
-                                  WHERE m.id = ?");
+        $stmt = $this->db->prepare("SELECT m.*, u.pseudo as author, u.image_profile as author_image
+                                    FROM messages m
+                                    JOIN users u ON m.user_id = u.id
+                                    WHERE m.id = ?");
         $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $message = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $message;
     }
 
     public function updatePostit($id, $content, $category) {
