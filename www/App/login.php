@@ -21,6 +21,12 @@
 
             <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Se connecter</button>
 
+            <div class="mt-4 text-center text-sm">
+                <p class="text-gray-600">
+                    Vous n'avez pas de compte? <a href="register.php" class="font-medium text-indigo-600 hover:text-indigo-500">S'inscrire</a>
+                </p>
+            </div>
+
         </form>
     </div>
 </div>
