@@ -58,7 +58,7 @@ class Retro {
         }
 
         $stmt = $this->db->prepare("UPDATE messages 
-                                  SET content = ?, category = ?, updated_at = NOW() 
+                                  SET content = ?, category = ?
                                   WHERE id = ?");
         return $stmt->execute([$content, $category, $id]);
     }
