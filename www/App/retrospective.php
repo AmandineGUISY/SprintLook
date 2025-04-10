@@ -4,7 +4,7 @@ require_once 'Retrospective/retrospective.php';
 ?>
 
 <div class="flex flex-col items-center space-y-8">
-    <h1 class="pt-8 font-bold text-5xl text-center">Rétrospective</h1>
+    <h1 class="pt-8 font-bold text-4xl text-center"><?= $_GET['room_name'] ?></h1>
     
     <button id="newPostItBtn" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full shadow-lg transition">
         <i class="fas fa-plus mr-2"></i>Nouveau Post-it
