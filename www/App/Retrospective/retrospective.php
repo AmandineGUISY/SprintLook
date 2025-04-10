@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$room_id = 9;
+$room_id = $_GET['room_id'];
 $user_id = $_SESSION['user_id'];
 
 $db = Database::getConnection();
