@@ -190,7 +190,5 @@
 
     <script src="Index/faq.js"></script>
 
-    <!-- Footer -->
-    <?php require_once "Footer/footer.php";?>
-</body>
-</html>
+<!-- Footer -->
+<?php require_once "Footer/footer.php";?>
