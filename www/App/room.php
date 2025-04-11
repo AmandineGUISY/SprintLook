@@ -4,7 +4,7 @@ session_start();
 ?>
 <!-- Addition of Room button -->
 <div class="fixed bottom-8 right-8">
-    <button onclick="roomModal.open()" class="p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all">
+    <button onclick="roomModal.open()" class="p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all w-16 h-16">
         <i class="fas fa-plus text-2xl"></i>
     </button>
 </div>
