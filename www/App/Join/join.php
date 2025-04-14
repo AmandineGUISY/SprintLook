@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name_room = trim($_POST['nameRoom']);
     $code = trim($_POST['code']);
     $current_name = $_POST['currentName'];
-    $current_image = "Resources/Images/" . $_POST['currentImage'];
+    $current_image = "/Resources/Images/" . $_POST['currentImage'];
 
     $pdo = Database::getConnection();
     $nameless = new Nameless($pdo);
