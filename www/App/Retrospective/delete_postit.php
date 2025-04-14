@@ -3,7 +3,7 @@ require_once '../Protected/database.php';
 require_once '../Protected/class_retro.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['nameless_id'])) {
     echo json_encode(['success' => false, 'error' => 'Non autorisé']);
     exit();
 }
@@ -18,11 +18,16 @@ try {
     $retro = new Retro($db);
 
     $stmt = $db->prepare("SELECT m.id 
-                         FROM messages m
-                         LEFT JOIN rooms r ON m.room_id = r.id
-                         WHERE m.id = ? AND (m.user_id = ? OR r.user_id = ?)");
-    $stmt->execute([$_POST['id'], $_SESSION['user_id'], $_SESSION['user_id']]);
-    
+                     FROM messages m
+                     WHERE m.id = ? 
+                     AND (m.user_id = ? OR m.nameless_id = ?)");
+
+    $stmt->execute([
+        $_POST['id'], 
+        $_SESSION['user_id'] ?? null, 
+        $_SESSION['nameless_id'] ?? null
+    ]);
+
     if (!$stmt->fetch()) {
         echo json_encode(['success' => false, 'error' => 'Action non autorisée']);
         exit();
