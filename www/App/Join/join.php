@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response['success'] = true;
 
                 unset($_SESSION['user_id']);
-                $_SESSION['id_nameless'] = $id_nameless;
-                
+                $_SESSION['nameless_id'] = $id_nameless;
+
                 $response['redirect'] = "retrospective.php?room_id=".$id_room."&room_name=".$name_room; // Adaptez cette URL
             } else {
                 $response['message'] = "Erreur lors de l'ajout à la salle";
