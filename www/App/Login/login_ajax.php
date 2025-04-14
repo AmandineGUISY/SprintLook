@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($res[0] == 200) {
         $user = $res[2];
 
-        // creation of the session
+        // making the session
+        $_SESSION = [];
         $_SESSION['user_id'] = $user ['id']?? '';
 
         echo json_encode(['status' => 200, 'message' => $res[1]]);
