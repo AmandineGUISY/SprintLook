@@ -6,9 +6,9 @@ class Retro {
         $this->db = $pdo;
     }
 
-    public function getRoom($userId, $roomId) {
-        $stmt = $this->db->prepare("SELECT * FROM rooms WHERE id = ? AND user_id = ?");
-        $stmt->execute([$roomId, $userId]);
+    public function getRoom($name, $roomId) {
+        $stmt = $this->db->prepare("SELECT * FROM rooms WHERE id = ? AND name = ?");
+        $stmt->execute([$roomId, $name]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
