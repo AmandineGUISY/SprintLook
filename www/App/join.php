@@ -59,6 +59,9 @@
 
         <form action="#" id ="namelessForm" method="POST" class="space-y-5 px-4 sm:px-8 mt-2">
 
+            <input type="hidden" id="currentNameInput" name="currentName" value="Alex">
+            <input type="hidden" id="currentImageInput" name="currentImage" value="1.png">
+            
             <!-- Name of the room -->
             <div class="group">
                 <label for="nameRoom" class="block text-xl font-medium text-gray-700 mb-2 transition-all duration-200 group-focus-within:text-blue-600">
@@ -82,7 +85,7 @@
             <!-- code of the room -->
             <div class="group">
                 <label for="code" class="block text-xl font-medium text-gray-700 mb-2 transition-all duration-200 group-focus-within:text-blue-600">
-                    </i>Code du salon
+                    Code du salon
                 </label>
                 <div class="relative">
                     <input 
@@ -92,7 +95,7 @@
                         class="w-full pl-11 pr-4 py-3 text-gray-700 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all duration-200 placeholder-gray-400 hover:border-gray-300"
                         placeholder="Entrez le code du salon"
                         required
-                        maxlength="6"
+                        maxlength="10"
                     >
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fas fa-key text-gray-400 group-focus-within:text-blue-500"></i>
@@ -102,7 +105,8 @@
 
             <!-- Enter the room -->
             <div class="mt-10 text-center">
-                <button id="validate" class="text-2xl px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-5">
+                <button id="validate"
+                        class="text-2xl px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mt-5">
                     Entrer
                 </button>
             </div>
@@ -110,6 +114,7 @@
     </div>
 
     <script src="Join/carousel.js"></script>
+    <script src="Join/join.js"></script>
 </div>
 
 <?php require_once "Footer/footer.php";?>
