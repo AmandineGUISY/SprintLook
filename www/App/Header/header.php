@@ -12,6 +12,15 @@
 </head>
 
 <body>
+    <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    var_dump($_SESSION);
+    $disconnected = empty($_SESSION['user_id']);
+    ?>
+
     <header class="bg-blue-500 text-white shadow-md">
         <nav class="bg-blue-500 text-white shadow-lg">
             <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -25,7 +34,16 @@
                     <a href="index.php" class="hover:underline font-medium">Accueil</a>
                     <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                     <a href="join.php" class="hover:underline">Rejoindre un salon</a>
-                    <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition ml-4">Se connecter</a>
+                    <?php if ($disconnected) : ?>
+                        <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition ml-4">Se connecter</a>
+                    <?php elseif (!$disconnected) : ?>
+                        <a href="Header/logout.php">
+                            <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
+                                <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                                <span class="font-medium">Déconnexion</span>
+                            </button>
+                        </a>
+                    <?php endif; ?>
                 </div>
                 
                 <!-- Menu Mobile -->
@@ -44,8 +62,16 @@
                     <a href="index.php" class="hover:underline">Accueil</a>
                     <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                     <a href="join.php" class="hover:underline">Rejoindre un salon</a>
-                    <a href="login.php" class="bg-white text-blue-600 px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition">Se connecter</a>
-                </div>
+                    <?php if ($disconnected) : ?>
+                        <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition">Se connecter</a>
+                    <?php elseif (!$disconnected) : ?>
+                        <a href="Header/logout.php">
+                            <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
+                                <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                                <span class="font-medium">Déconnexion</span>
+                            </button>
+                        </a>
+                    <?php endif; ?>
             </div>
         </nav>
     </header>
