@@ -20,15 +20,14 @@ try {
     $stmt = $db->prepare("SELECT m.id 
                      FROM messages m
                      WHERE m.id = ? 
-                     AND (m.user_id = ? OR m.nameless_id = ?)");
+                     AND (m.nameless_id = ?)");
 
     $stmt->execute([
-        $_POST['id'], 
-        $_SESSION['user_id'] ?? null, 
+        $_POST['id'],
         $_SESSION['nameless_id'] ?? null
     ]);
 
-    if (!$stmt->fetch()) {
+    if (!$stmt->fetch() && !isset($_SESSION['user_id'])) {
         echo json_encode(['success' => false, 'error' => 'Action non autorisée']);
         exit();
     }
