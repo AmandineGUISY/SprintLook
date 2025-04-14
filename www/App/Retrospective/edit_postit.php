@@ -5,7 +5,7 @@ session_start();
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['nameless_id'])) {
     echo json_encode(['success' => false, 'error' => 'Non autorisé']);
     exit();
 }
@@ -20,9 +20,17 @@ try {
     $retro = new Retro($db);
 
     // verify if the id is the owner of the post it
-    $stmt = $db->prepare("SELECT id FROM messages WHERE id = ? AND user_id = ?");
-    $stmt->execute([$_POST['id'], $_SESSION['user_id']]);
-    
+    $stmt = $db->prepare("SELECT m.id 
+                     FROM messages m
+                     WHERE m.id = ? 
+                     AND (m.nameless_id = ? OR m.user_id = ?)");
+
+    $stmt->execute([
+        $_POST['id'],
+        $_SESSION['nameless_id'] ?? null,
+        $_SESSION['user_id'] ?? null
+    ]);
+
     if (!$stmt->fetch()) {
         echo json_encode(['success' => false, 'error' => 'Action non autorisée']);
         exit();
