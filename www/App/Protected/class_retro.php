@@ -30,6 +30,7 @@
             $stmt->execute([$currentUserId, $currentUserId, $roomId]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
         public function createPostit($roomId, $userId, $namelessId, $content, $category) {
 
             $isAuthor = ($userId !== null) ? 1 : 0;
