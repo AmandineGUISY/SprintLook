@@ -2,6 +2,8 @@
 require_once "../Protected/class_nameless.php";
 require_once "../Protected/database.php";
 
+if (session_status() === PHP_SESSION_NONE) {session_start();} 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = ['success' => false, 'message' => ''];
 
@@ -23,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if the nameless is rightly created it insert it in the room
             if ($nameless->addNamelessToTheRoom($id_room, $id_nameless)) {
                 $response['success'] = true;
+
+                unset($_SESSION['user_id']);
+                $_SESSION['id_nameless'] = $id_nameless;
+                
                 $response['redirect'] = "retrospective.php?room_id=".$id_room."&room_name=".$name_room; // Adaptez cette URL
             } else {
                 $response['message'] = "Erreur lors de l'ajout à la salle";
