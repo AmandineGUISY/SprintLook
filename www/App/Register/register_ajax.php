@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ($loginStatusCode === 200) {
                     // stocking the information in the session
+                    $_SESSION = [];
                     $_SESSION['user_id'] = $userData['id'];
 
                     http_response_code($statusCode);
