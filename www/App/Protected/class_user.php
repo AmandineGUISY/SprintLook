@@ -64,4 +64,23 @@ class User {
             return [500, "Erreur de base de données : " . $e->getMessage()];
         }
     }
+
+    public function getUserInfo($userID) {
+        $stmt = $this->db->prepare("SELECT pseudo, email, image_profile, created_at FROM users WHERE id = ?");
+        $stmt->execute([$userID]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
+    }
+
+    public function updateProfileImg($imagePath, $userID) {
+        $stmt = $this->db->prepare("UPDATE users SET image_profile = ? WHERE id = ?");
+        $success = $stmt->execute([$imagePath, $userID]);
+
+        if (!$success) {
+            throw new Exception('Échec de la mise à jour du salon');
+        }
+    
+        return true;
+    }
 }
