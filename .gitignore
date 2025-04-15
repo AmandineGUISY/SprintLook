@@ -1,2 +1,5 @@
 .env
 /dov/.env
+*.png
+*.jpeg
+*.jpg
