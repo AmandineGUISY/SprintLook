@@ -30,7 +30,7 @@
             $stmt->execute([$currentUserId, $currentUserId, $roomId]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
         public function createPostit($roomId, $userId, $namelessId, $content, $category) {
 
             $isAuthor = ($userId !== null) ? 1 : 0;
@@ -65,6 +65,20 @@
             return array_filter($messages, function($msg) use ($category) {
                 return $msg['category'] === $category;
             });
+        }
+
+        public function namelessAcces($namelessId, $roomId) {
+            $stmt = $this->$db->prepare("SELECT 1
+                                         FROM room_members
+                                         WHERE room_id = ? AND nameless_id = ?");
+            return $stmt->execute([$roomId, $namelessId]);
+        }
+
+        public function isOwner($userId, $roomId) {
+            $stmt = $this->$db->prepare("SELECT 1
+                                         FROM rooms
+                                         WHERE user_id = ? AND id = ?");
+            return $stmt->execute([$userId, $roomId]);
         }
     }
     ?>
