@@ -68,17 +68,19 @@
         }
 
         public function namelessAcces($namelessId, $roomId) {
-            $stmt = $this->$db->prepare("SELECT 1
-                                         FROM room_members
-                                         WHERE room_id = ? AND nameless_id = ?");
-            return $stmt->execute([$roomId, $namelessId]);
+            $stmt = $this->db->prepare("SELECT 1
+                                       FROM room_members
+                                       WHERE room_id = ? AND nameless_id = ?");
+            $stmt->execute([$roomId, $namelessId]);
+            return (bool)$stmt->fetch();
         }
 
         public function isOwner($userId, $roomId) {
-            $stmt = $this->$db->prepare("SELECT 1
-                                         FROM rooms
-                                         WHERE user_id = ? AND id = ?");
-            return $stmt->execute([$userId, $roomId]);
+            $stmt = $this->db->prepare("SELECT 1
+                                       FROM rooms
+                                       WHERE id = ? AND user_id = ?");
+            $stmt->execute([$roomId, $userId]);
+            return (bool)$stmt->fetch();
         }
     }
     ?>
