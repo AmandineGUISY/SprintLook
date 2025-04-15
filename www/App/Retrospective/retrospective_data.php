@@ -10,21 +10,29 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['nameless_id'])) {
     exit();
 }
 
-$room_id = $_GET['room_id'];
-$room_name = $_GET['room_name'];
+$room_id = $_GET['room_id'] ?? NULL;
+$room_name = $_GET['room_name'] ?? NULL;
 $user_id = NULL;
 $nameless_id = NULL;
-
-if (!isset($_SESSION['user_id'])) {$user_id = $_SESSION['user_id'];}
-if (!isset($_SESSION['nameless_id'])) {$nameless_id = $_SESSION['nameless_id'];}
+$acces = NULL;
 
 $db = Database::getConnection();
 $retro = new Retro($db);
 
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $acces = $retro->isOwner($user_id, $room_id);
+}
+elseif (isset($_SESSION['nameless_id'])) {
+    $nameless_id = $_SESSION['nameless_id'];
+    $acces = $retro->namelessAcces($nameless_id, $room_id);
+}
+
 $room = $retro->getRoom($room_name, $room_id);
 
-if (!$room) {
-    die("Salle non trouvée ou accès refusé");
+if (!$room || !$acces) {
+    header('Location: join.php');
+    exit();
 }
 
 $messages = $retro->getPostits($room_id);
@@ -32,5 +40,5 @@ $positive = $retro->filterByCategory($messages, 'positif');
 $negative = $retro->filterByCategory($messages, 'negatif');
 $improve = $retro->filterByCategory($messages, 'a_ameliorer');
 
-$postits = $retro->getPostits($roomId, $_SESSION['user_id']);
-$isRoomOwner = $retro->getRoom($_SESSION['user_id'], $roomId) !== false;
+$postits = $retro->getPostits($room_id, $user_id);
+$isRoomOwner = $retro->getRoom($user_id, $room_id) !== false;
