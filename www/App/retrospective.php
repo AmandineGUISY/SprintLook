@@ -29,8 +29,8 @@ require_once 'Retrospective/retrospective_data.php';
                     <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
                     <select name="category" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="positif">Positif</option>
-                        <option value="negatif">Négatif</option>
                         <option value="a_ameliorer">À améliorer</option>
+                        <option value="negatif">Négatif</option>
                     </select>
                 </div>
                     
@@ -104,7 +104,7 @@ require_once 'Retrospective/retrospective_data.php';
                         <!-- Boutons pour utilisateurs connectés -->
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <div class="absolute top-2 right-2 flex space-x-2">
-                                <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                                <?php if ($msg['user_id'] == $_SESSION['user_id']): ?>
                                     <button class="edit-postit text-blue-500 hover:text-blue-700 transition-colors"
                                             data-id="<?= $msg['id'] ?>"
                                             data-category="<?= $msg['category'] ?>"
@@ -160,7 +160,7 @@ require_once 'Retrospective/retrospective_data.php';
                     <div class="post-it p-3 md:p-4 rounded-lg bg-white shadow-md relative hover:shadow-lg transition-shadow duration-200 border-l-4 border-orange-500">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <div class="absolute top-2 right-2 flex space-x-2">
-                                <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                                <?php if ($msg['user_id'] == $_SESSION['user_id']): ?>
                                     <button class="edit-postit text-blue-500 hover:text-blue-700 transition-colors"
                                             data-id="<?= $msg['id'] ?>"
                                             data-category="<?= $msg['category'] ?>"
@@ -215,7 +215,7 @@ require_once 'Retrospective/retrospective_data.php';
                     <div class="post-it p-3 md:p-4 rounded-lg bg-white shadow-md relative hover:shadow-lg transition-shadow duration-200 border-l-4 border-red-500">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <div class="absolute top-2 right-2 flex space-x-2">
-                                <?php if ($msg['user_id'] == $_SESSION['user_id'] || $isRoomOwner): ?>
+                                <?php if ($msg['user_id'] == $_SESSION['user_id']): ?>
                                     <button class="edit-postit text-blue-500 hover:text-blue-700 transition-colors"
                                             data-id="<?= $msg['id'] ?>"
                                             data-category="<?= $msg['category'] ?>"
