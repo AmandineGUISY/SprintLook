@@ -6,13 +6,14 @@
                         <img src="/Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-8 w-8 rounded">
                         <span class="text-lg font-bold">SprintLook</span>
                     </div>
-                    <p class="text-gray-400">L'outil collaboratif pour des rétrospectives efficaces et archivées.</p>
+                    <p class="text-gray-400">L'outil collaboratif pour des rétrospectives efficaces et en tout anonymat.</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Produit</h3>
                     <ul class="space-y-2">
                         <li><a href="log.php" class="text-gray-400 hover:text-white transition">Historique</a></li>
                         <li><a href="room.php" class="text-gray-400 hover:text-white transition">Mes rétrospectives</a></li>
+                        <li><a href="profile.php" class="text-gray-400 hover:text-white transition">Mon profil</a></li>
                     </ul>
                 </div>
                 <div>
