@@ -32,12 +32,12 @@
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="index.php" class="hover:underline font-medium">Accueil</a>
-                    <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                     <a href="join.php" class="hover:underline">Rejoindre un salon</a>
                     <?php if ($disconnected) : ?>
                         <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition ml-4">Se connecter</a>
                     <?php elseif (!$disconnected) : ?>
                         <a href="profile.php" class="hover:underline">Profil</a>
+                        <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                         <a href="Header/logout.php">
                             <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
                                 <i class="fa-solid fa-right-from-bracket text-sm"></i>
@@ -61,11 +61,12 @@
             <div class="md:hidden">
                 <div id="menu" class="hidden absolute flex-col items-center py-8 space-y-6 bg-blue-500 w-full left-0 right-0 z-50">
                     <a href="index.php" class="hover:underline">Accueil</a>
-                    <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                     <a href="join.php" class="hover:underline">Rejoindre un salon</a>
                     <?php if ($disconnected) : ?>
                         <a href="login.php" class="bg-white text-blue-600 px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition">Se connecter</a>
                     <?php elseif (!$disconnected) : ?>
+                        <a href="room.php" class="hover:underline">Mes rétrospectives</a>
+                        <a href="profile.php" class="hover:underline">Profil</a>
                         <a href="Header/logout.php">
                             <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
                                 <i class="fa-solid fa-right-from-bracket text-sm"></i>
