@@ -19,11 +19,11 @@ $acces = NULL;
 $db = Database::getConnection();
 $retro = new Retro($db);
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])) { // check the permission of the user
     $user_id = $_SESSION['user_id'];
     $acces = $retro->isOwner($user_id, $room_id);
 }
-elseif (isset($_SESSION['nameless_id'])) {
+elseif (isset($_SESSION['nameless_id'])) { // check if the nameless have the right to come to the room
     $nameless_id = $_SESSION['nameless_id'];
     $acces = $retro->namelessAcces($nameless_id, $room_id);
 }
@@ -35,10 +35,10 @@ if (!$room || !$acces) {
     exit();
 }
 
-$messages = $retro->getPostits($room_id);
-$positive = $retro->filterByCategory($messages, 'positif');
+$messages = $retro->getPostits($room_id); // get all the post it of the room
+
+// take only the message for each category
+
+$positive = $retro->filterByCategory($messages, 'positif'); 
 $negative = $retro->filterByCategory($messages, 'negatif');
 $improve = $retro->filterByCategory($messages, 'a_ameliorer');
-
-$postits = $retro->getPostits($room_id, $user_id);
-$isRoomOwner = $retro->getRoom($user_id, $room_id) !== false;
