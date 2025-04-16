@@ -32,7 +32,7 @@
         }
 
         public function createPostit($roomId, $userId, $namelessId, $content, $category) {
-
+            // create the new post it
             $isAuthor = ($userId !== null) ? 1 : 0;
 
             $stmt = $this->db->prepare("INSERT INTO messages 
@@ -44,12 +44,14 @@
         }
 
         public function updatePostit($id, $content, $category) {
-            // Validation de la catégorie
+            // check if the category is valid
             $validCategories = ['positif', 'negatif', 'a_ameliorer'];
+
             if (!in_array($category, $validCategories)) {
                 throw new Exception("Catégorie invalide");
             }
 
+            // update the post it
             $stmt = $this->db->prepare("UPDATE messages 
                                     SET content = ?, category = ?
                                     WHERE id = ?");
@@ -62,12 +64,16 @@
         }
 
         public function filterByCategory($messages, $category) {
+            // take the $messages and take only the one with the category you want
+
             return array_filter($messages, function($msg) use ($category) {
                 return $msg['category'] === $category;
             });
         }
 
         public function namelessAcces($namelessId, $roomId) {
+            // check if the nameless is a room member
+
             $stmt = $this->db->prepare("SELECT 1
                                        FROM room_members
                                        WHERE room_id = ? AND nameless_id = ?");
@@ -76,6 +82,8 @@
         }
 
         public function isOwner($userId, $roomId) {
+            // check if the user connected is the owner of the room
+
             $stmt = $this->db->prepare("SELECT 1
                                        FROM rooms
                                        WHERE id = ? AND user_id = ?");
