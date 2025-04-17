@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const newBtn = document.getElementById('newPostItBtn');
     const cancelBtn = document.getElementById('cancelPostIt');
+    const closeModalBtn = document.getElementById('closeModalBtn');
     
     newBtn.addEventListener('click', () => modal.classList.remove('hidden'));
     cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
+    closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
     
     const form = document.getElementById('postItForm');
 
