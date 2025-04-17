@@ -5,14 +5,14 @@ Ce projet est un site web permettant aux utilisateurs de créer et de gérer des
 
 ## Fonctionnalités
 - **Inscription/Connexion** : Les utilisateurs peuvent créer un compte et se connecter.
-- **Profile** : Les utilisateurs peuvent choisir une image de profil 
+- **Profil** : Les utilisateurs peuvent choisir une image de profil 
 - **Création de Salon** : Les utilisateurs connectés peuvent créer des salons de rétrospective.
 - **Anonymat personnalisé** : choississez un nom et une image de profil afin que personne ne vous reconnaisse
 - **Invitation Anonyme** : Rejoignez un salon anonymement grace à son code et son nom de room
 - **Gestion des Étiquettes** :
   - Tous les participants peuvent ajouter, supprimer et modifier leurs propres étiquettes.
   - Le créateur du salon peut supprimer n'importe quelle étiquette.
-- **Interface Interactive** : Les étiquettes sont rechargé dynamiquement toutes les 5 secondes.
+- **Interface Interactive** : Les étiquettes sont rechargées dynamiquement toutes les 5 secondes.
 
 ## Fonctionnalités Futures
 - **Système de Clôture** : Permettre au créateur de la room de clôturer la rétrospective, empêchant ainsi toute modification ultérieure, et permettant à l'utilisateur de garder une trace de ses retrospectives. 
@@ -44,7 +44,7 @@ Ce projet est un site web permettant aux utilisateurs de créer et de gérer des
 3. **Lancement** :
    - Accédez à l'application via votre navigateur (ex: `http://sprintlook.local/App/`).
 
-## Structure des Fichiers
+## Arborescence des fichiers
  ```
 SprintLook/
 ├── doc/
@@ -129,5 +129,5 @@ SprintLook/
 │
 └── .gitignore                   # Fichier Git ignore
  ```
-## Auteurs
+## Auteur
 - [Amandine GUISY](https://github.com/AmandineGUISY)
