@@ -16,7 +16,7 @@
                     
                     <!-- Image -->
                     <div class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 flex items-center justify-center bg-gray-200 rounded-full overflow-hidden mx-2">
-                        <img id="currentImage" src="Resources/Images/1.png" alt="Image sélectionnée" 
+                        <img id="currentImage" src="../Resources/Images/1.png" alt="Image sélectionnée" 
                              class="w-full h-full object-cover">
                     </div>
                     

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SprintLook</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/Resources/Images/SprintLook.png" type="image/x-icon">
+    <link rel="icon" href="../Resources/Images/SprintLook.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="/Resources/Images/SprintLook.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="Header/style.css">
@@ -24,7 +24,7 @@
         <nav class="bg-blue-500 text-white shadow-lg">
             <div class="container mx-auto px-4 py-3 flex justify-between items-center">
                 <div class="flex items-center space-x-2 bg-blue-200 rounded-xl px-4 py-1 shadow">
-                    <img src="/Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-10 w-10 rounded">
+                    <img src="../Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-10 w-10 rounded">
                     <span class="text-xl text-black font-bold">SprintLook</span>
                 </div>
                 

@@ -3,7 +3,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <img src="/Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-8 w-8 rounded">
+                        <img src="../Resources/Images/SprintLook.png" alt="Sprintlook Logo" class="h-8 w-8 rounded">
                         <span class="text-lg font-bold">SprintLook</span>
                     </div>
                     <p class="text-gray-400">L'outil collaboratif pour des rétrospectives efficaces et en tout anonymat.</p>

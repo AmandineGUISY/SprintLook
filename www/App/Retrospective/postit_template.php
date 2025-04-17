@@ -34,7 +34,7 @@
         </div>
     <?php endif; ?>
     <div class="flex items-start mb-2">
-        <img src="<?= htmlspecialchars($msg['author_image'] ?? '/Resources/Images/SprintLook.png') ?>" 
+        <img src="<?= htmlspecialchars($msg['author_image'] ?? '../Resources/Images/SprintLook.png') ?>" 
             alt="Profile" class="w-6 h-6 md:w-8 md:h-8 rounded-full mr-2 object-cover">
         <span class="font-semibold text-sm md:text-base"><?= htmlspecialchars($msg['author']) ?></span>
     </div>

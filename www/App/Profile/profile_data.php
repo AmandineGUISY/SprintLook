@@ -2,8 +2,6 @@
 require_once 'Protected/database.php';
 require_once 'Protected/class_user.php';
 
-session_start();
-
 // verify if the user is connected
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
