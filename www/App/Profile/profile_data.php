@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_image'])) {
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetPath)) {
             // update in the database
             try {
-                if (file_exists($user['image_profile'])) {unlink($user['image_profile']);} // delete the image who is not used anymore
+                if (($user['image_profile']) != NULL) {unlink($user['image_profile']);} // delete the image who is not used anymore
 
                 $userManager->updateProfileImg($targetPath, $_SESSION['user_id']);
 
