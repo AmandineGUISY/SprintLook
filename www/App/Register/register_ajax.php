@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode([
                         'status' => $statusCode,
                         'message' => $message,
-                        'redirect' => '/App/index.php'
+                        'redirect' => 'index.php'
                     ]);
                     exit;
                 } else {

@@ -1,6 +1,6 @@
 <?php 
 require_once "Header/header.php";
-session_start();
+if (session_status() === PHP_SESSION_NONE) {session_start();}
 ?>
 <!-- Addition of Room button -->
 <div class="fixed bottom-8 right-8">

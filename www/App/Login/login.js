@@ -23,7 +23,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
             document.getElementById('loginForm').reset();
 
             setTimeout(() => {
-                window.location.href = '/App/index.php';
+                window.location.href = 'index.php';
             }, 200);
         } else {
             const errorMessage = document.getElementById('error-message');
