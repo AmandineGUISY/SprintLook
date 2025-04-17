@@ -3,8 +3,6 @@ require_once '../Protected/database.php';
 require_once '../Protected/class_room.php';
 session_start();
 
-header('Content-Type: application/json');
-
 try {
 
     if (!isset($_SESSION['user_id'])) {
@@ -18,9 +16,9 @@ try {
     $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
     $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'date-desc';
 
-    $result = $roomManager->getRooms($userId, $searchTerm, $sortBy);
+    $result = $roomManager->getRooms($userId, $searchTerm, $sortBy); // get the room by Terme and by sort
 
-    echo json_encode($result);
+    echo json_encode($result); // send of the rooms
 
 } catch (Exception $e) {
     http_response_code(500);
