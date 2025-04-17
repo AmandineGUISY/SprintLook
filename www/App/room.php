@@ -1,6 +1,12 @@
 <?php 
 require_once "Header/header.php";
+
 if (session_status() === PHP_SESSION_NONE) {session_start();}
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
 ?>
 <!-- Addition of Room button -->
 <div class="fixed bottom-8 right-8">
