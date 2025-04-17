@@ -44,7 +44,7 @@ Ce projet est un site web permettant aux utilisateurs de créer et de gérer des
 3. **Lancement** :
    - Accédez à l'application via votre navigateur (ex: `http://sprintlook.local/App/`).
 
-## Structure des Fichiers
+## Arborescence des fichiers
  ```
 SprintLook/
 ├── doc/
