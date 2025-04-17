@@ -1,7 +1,6 @@
 <?php 
 require_once 'Header/header.php';
 require_once 'Retrospective/retrospective_data.php';
-
 ?>
 
 <div class="flex flex-col items-center space-y-8 py-8 bg-blue-50">
@@ -23,7 +22,7 @@ require_once 'Retrospective/retrospective_data.php';
                 </button>
             </div>
             <form id="postItForm" class="space-y-4">
-                <input type="hidden" name="room_id" value="<?= $room_id ?>">
+                <input type="hidden" name="room_id" value="<?= $_GET['room_id'] ?>">
                 <input type="hidden" name="user_id" value="<?= $user_id ?>">
                         
                 <div>
@@ -63,7 +62,7 @@ require_once 'Retrospective/retrospective_data.php';
             </div>
             <form id="editPostItForm" class="space-y-4">
                 <input type="hidden" name="postit_id" id="editPostItId">
-                <input type="hidden" name="room_id" value="<?= $room_id ?>">
+                <input type="hidden" name="room_id" value="<?= $_GET['room_id']?>">
                 <input type="hidden" name="user_id" value="<?= $user_id ?>">
                         
                 <div>
@@ -132,8 +131,10 @@ require_once 'Retrospective/retrospective_data.php';
     </div>
 </main>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="Retrospective/delete_postit.js"></script>
 <script src="Retrospective/retrospective.js"></script>
 <script src="Retrospective/edit_postit.js"></script>
+<script src="Retrospective/refresh_postits.js"></script>
 
 <?php include 'Footer/footer.php'; ?>
