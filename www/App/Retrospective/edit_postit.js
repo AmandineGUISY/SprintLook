@@ -3,22 +3,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const editForm = document.getElementById('editPostItForm');
     let currentPostItId = null;
 
-    // edit button
-    document.querySelectorAll('.edit-postit').forEach(button => {
-        button.addEventListener('click', function() {
-            currentPostItId = this.getAttribute('data-id');
-            const category = this.getAttribute('data-category');
-            const content = this.getAttribute('data-content');
+    document.getElementById('retro-board').addEventListener('click', function(event) { // on retro board
+        const editButton = event.target.closest('.edit-postit'); // if the click is on a edit postit button
+        
+        if (editButton) {
+            event.preventDefault();
+            currentPostItId = editButton.getAttribute('data-id');
+            const category = editButton.getAttribute('data-category');
+            const content = editButton.getAttribute('data-content');
             
-            editForm.querySelector('[name="category"]').value = category;
-            editForm.querySelector('[name="content"]').value = content;
+            // form of edition is now completed
+            document.getElementById('editPostItCategory').value = category;
+            document.getElementById('editPostItContent').value = content;
+            document.getElementById('editPostItId').value = currentPostItId;
             
+            // display the modale
             editModal.classList.remove('hidden');
-        });
+        }
     });
 
     // cancel button
     document.getElementById('cancelEditPostIt').addEventListener('click', () => {
+        editModal.classList.add('hidden');
+    });
+
+    // cross button
+    document.getElementById('closeEditModalBtn').addEventListener('click', () => {
         editModal.classList.add('hidden');
     });
 

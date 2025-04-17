@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-postit').forEach(button => {
-        button.addEventListener('click', async function() {
-            const postitId = this.getAttribute('data-id');
+    document.getElementById('retro-board').addEventListener('click', async function(event) {
+        // verify if the element clicked have the delet-postit class in the retro-board div
+        const deleteButton = event.target.closest('.delete-postit');
+        
+        if (deleteButton) {
+            event.preventDefault();
+            const postitId = deleteButton.getAttribute('data-id');
             
             if (confirm('Voulez-vous vraiment supprimer ce post-it ?')) {
                 try {
@@ -16,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const result = await response.json();
                     
                     if (result.success) {
-                        this.closest('.post-it').remove();
+                        deleteButton.closest('.post-it').remove();
                     } else {
                         alert('Erreur: ' + (result.error || 'Échec de la suppression'));
                     }
@@ -25,6 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Une erreur est survenue');
                 }
             }
-        });
+        }
     });
 });
