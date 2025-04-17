@@ -1,4 +1,4 @@
-# Retrospective Board - Site de Tableaux de Rétrospective
+# SprintLook - Site de Tableaux de Rétrospective
 
 ## Description
 Ce projet est un site web permettant aux utilisateurs de créer et de gérer des tableaux de rétrospective en ligne. Les utilisateurs peuvent s'inscrire, se connecter, créer des salons (rooms) et inviter d'autres participants de manière anonyme via un code et le nom de la room. Les participants peuvent ajouter, supprimer et modifier leurs propres étiquettes (notes), tandis que le créateur de la room a la possibilité de supprimer n'importe quelle étiquette.
@@ -45,7 +45,7 @@ Ce projet est un site web permettant aux utilisateurs de créer et de gérer des
    - Accédez à l'application via votre navigateur (ex: `http://sprintlook.local/App/`).
 
 ## Structure des Fichiers
-
+ ```
 SprintLook/
 ├── doc/
 │   ├── .env                     # Fichier d'environnement (variables sensibles)
@@ -128,6 +128,6 @@ SprintLook/
 │       └── Images/              # Assets du site (logo SprintLook + avatars anonymes)
 │
 └── .gitignore                   # Fichier Git ignore
-
+ ```
 ## Auteurs
 - [Amandine GUISY](https://github.com/AmandineGUISY)
