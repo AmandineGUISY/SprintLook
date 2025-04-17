@@ -1,5 +1,5 @@
 // Image management
-const imagePaths = Array.from({length: 9}, (_, i) => `/Resources/Images/${i + 1}.png`);
+const imagePaths = Array.from({length: 9}, (_, i) => `../Resources/Images/${i + 1}.png`);
 let currentImageIndex = 0;
 const imageElement = document.getElementById('currentImage');
 const imageCounter = document.getElementById('imageCounter');
