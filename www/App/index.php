@@ -6,7 +6,7 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-6">Rétrospectives collaboratives sans perte</h1>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Créez des salons, invitez des participants et conservez toutes vos rétrospectives en un seul endroit. Plus de post-it perdus !</p>
             <div class="space-x-4">
-                <a href="register.php" class="bg-white text-primary-600 px-6 py-3 rounded-md font-bold hover:bg-gray-100 transition text-lg">Commencer maintenant</a>
+                <a href="room.php" class="bg-white text-primary-600 px-6 py-3 rounded-md font-bold hover:bg-gray-100 transition text-lg">Commencer maintenant</a>
             </div>
         </div>
     </section>
