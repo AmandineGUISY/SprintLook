@@ -6,7 +6,7 @@ class Room {
         $this->db = $pdo;
     }
 
-    public function getRooms($userId, $searchTerm = '', $sortBy = 'date-desc') {
+    public function getRooms($userId, $searchTerm = '', $sortBy = 'date-desc', $closed = 0) {
 
         if ($userId <= 0) {
             throw new Exception('ID utilisateur invalide');
@@ -19,9 +19,9 @@ class Room {
                 r.created_at,
                 (SELECT COUNT(*) FROM room_members rm WHERE rm.room_id = r.id) as member_count 
                 FROM rooms r
-                WHERE r.user_id = :user_id AND r.closed = 0";
+                WHERE r.user_id = :user_id AND r.closed = :closed";
 
-        $params = [':user_id' => $userId];
+        $params = [':user_id' => $userId,':closed' => $closed];
 
         // Addition of the search like filter
         if (!empty($searchTerm)) {
