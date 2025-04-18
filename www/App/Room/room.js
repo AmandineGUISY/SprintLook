@@ -48,13 +48,20 @@ function displayRooms(rooms) {
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-semibold text-gray-800">${room.name}</h3>
                     <div>
-                        <button onclick="roomUpdate.open('${room.name.replace(/'/g, "\\'")}', ${room.id})"
-                            class="text-yellow-600 hover:text-yellow-800 px-1">
+                        <h3 class="text-xl font-semibold text-gray-800">${room.name}</h3>
+                    </div>
+                    <div>
+                        <button onclick="roomUpdate.open('${room.name.replace(/'/g, "\\'")}', ${room.id})" title="Modifier"
+                            class="text-yellow-400 hover:text-yellow-600">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button onclick="deleteRoom(${room.id})" class="text-red-600 hover:text-red-800">
+
+                        <button onclick="closeRoom(${room.id})" class="text-orange-300 hover:text-orange-500 px-1" title="Fermer et Archiver définitivement">
+                            <i class="fa-solid fa-lock"></i>
+                        </button>
+
+                        <button onclick="deleteRoom(${room.id})" class="text-red-600 hover:text-red-800" title="Supprimer">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
@@ -100,6 +107,31 @@ async function deleteRoom(roomId) {
     } catch (error) {
         console.error('Error:', error);
         alert('Erreur lors de la suppression');
+    }
+}
+
+async function closeRoom(roomId) {
+    if (!confirm('Voulez-vous vraiment archiver ce salon ? Ceci est une décision définitive.')) return;
+    
+    try {
+        const response = await fetch('Room/room_close.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ room_id: roomId })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            loadRooms();
+        } else {
+            alert(result.message + 'Erreur lors de la fermeture 1');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Erreur lors de la fermeture 2');
     }
 }
 
