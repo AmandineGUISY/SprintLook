@@ -24,24 +24,28 @@ require_once "Profile/profile_data.php";
         <div class="p-6">
             <form action="profile.php" method="post" enctype="multipart/form-data" class="space-y-6">
                 <!-- profile picture -->
-                <div class="flex flex-col items-center">
-                    <label for="profile-upload" class="cursor-pointer group">
-                        <div class="relative">
-                            <img src="<?= htmlspecialchars($user['image_profile'] ?? '../Resources/Images/SprintLook.png') ?>" 
-                                alt="Photo de profil" 
-                                class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md group-hover:border-blue-300 transition-all duration-300">
-                            <div class="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 group-hover:bg-blue-600 transition-all duration-300">
-                                <i class="fas fa-camera"></i>
-                            </div>
-                        </div>
-                        <input type="file" 
-                            id="profile-upload" 
-                            name="profile_image" 
-                            class="hidden"
-                            accept="image/jpeg, image/png, image/gif">
-                    </label>
+                <div class="flex flex-col items-center group">
+                    <div class="relative">
+                        <img src="<?= htmlspecialchars($user['image_profile'] ?? '../Resources/Images/SprintLook.png') ?>" 
+                            alt="Photo de profil" 
+                            class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md group-hover:border-blue-300 transition-all duration-300">
+                        
+                        <label for="profile-upload" 
+                            class="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer group-hover:bg-blue-600 transition-all duration-300"
+                            aria-label="Changer la photo de profil">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                    </div>
+
+                    <input type="file" 
+                        id="profile-upload" 
+                        name="profile_image" 
+                        class="hidden"
+                        accept="image/jpeg, image/png, image/gif">
+
                     <span class="mt-2 text-sm text-gray-500">Cliquez pour changer</span>
                 </div>
+
                 
                 <!-- Informations utilisateur -->
                 <div class="space-y-4">
