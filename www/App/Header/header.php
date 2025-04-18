@@ -37,11 +37,10 @@
                     <?php elseif (!$disconnected) : ?>
                         <a href="profile.php" class="hover:underline">Profil</a>
                         <a href="room.php" class="hover:underline">Mes rétrospectives</a>
-                        <a href="Header/logout.php">
-                            <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
-                                <i class="fa-solid fa-right-from-bracket text-sm"></i>
-                                <span class="font-medium">Déconnexion</span>
-                            </button>
+
+                        <a href="Header/logout.php" class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
+                            <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                            <span class="font-medium">Déconnexion</span>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -66,13 +65,13 @@
                     <?php elseif (!$disconnected) : ?>
                         <a href="room.php" class="hover:underline">Mes rétrospectives</a>
                         <a href="profile.php" class="hover:underline">Profil</a>
-                        <a href="Header/logout.php">
-                            <button class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
-                                <i class="fa-solid fa-right-from-bracket text-sm"></i>
-                                <span class="font-medium">Déconnexion</span>
-                            </button>
+                        
+                        <a href="Header/logout.php" class="flex items-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm shadow-md hover:bg-gray-300 transition-colors duration-200">
+                            <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                            <span class="font-medium">Déconnexion</span>
                         </a>
                     <?php endif; ?>
+                </div>
             </div>
         </nav>
     </header>
