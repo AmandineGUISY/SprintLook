@@ -85,7 +85,7 @@ class Room {
             throw new Exception('Action non autorisée');
         }
 
-        $stmt = $this->db->prepare("UPDATE rooms SET closed = 1 WHERE id = :room_id");
+        $stmt = $this->db->prepare("UPDATE rooms SET closed = 1, closed_time = NOW() WHERE id = :room_id");
         $success = $stmt->execute([':room_id' => $roomId]);
 
         if (!$success) {
