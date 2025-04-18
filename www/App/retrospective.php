@@ -26,14 +26,17 @@ require_once 'Retrospective/retrospective_data.php';
                 <input type="hidden" name="user_id" value="<?= $user_id ?>">
                         
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
-                    <select name="category" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
+                    <select name="category" id="category" required
+                        class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        
+                        <option value="" disabled selected hidden>-- Choisissez une catégorie --</option>
                         <option value="positif">Positif</option>
                         <option value="a_ameliorer">À améliorer</option>
                         <option value="negatif">Négatif</option>
                     </select>
                 </div>
-                    
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
                     <textarea name="content" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" rows="4" required></textarea>
@@ -68,6 +71,7 @@ require_once 'Retrospective/retrospective_data.php';
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
                     <select name="category" id="editPostItCategory" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        <option value="" disabled selected hidden>-- Choisissez une catégorie --</option>
                         <option value="positif">Positif</option>
                         <option value="negatif">Négatif</option>
                         <option value="a_ameliorer">À améliorer</option>
