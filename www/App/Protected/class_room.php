@@ -75,6 +75,26 @@ class Room {
         return $stmt->execute([':room_id' => $roomId]);
     }
 
+    public function closeRoom($roomId, $userId) {
+        // verify if the user is the owner
+        $stmt = $this->db->prepare("SELECT user_id FROM rooms WHERE id = :room_id");
+        $stmt->execute([':room_id' => $roomId]);
+        $ownerId = $stmt->fetchColumn();
+
+        if ($ownerId != $userId) {
+            throw new Exception('Action non autorisée');
+        }
+
+        $stmt = $this->db->prepare("UPDATE rooms SET closed = 1 WHERE id = :room_id");
+        $success = $stmt->execute([':room_id' => $roomId]);
+
+        if (!$success) {
+            throw new Exception('Échec de la mise à jour du salon');
+        }
+    
+        return true;
+    }
+
     public function createRoom($userId, $roomName) {
 
         $code = substr(strtoupper(uniqid()), 0, 8);
