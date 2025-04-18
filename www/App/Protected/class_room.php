@@ -19,7 +19,7 @@ class Room {
                 r.created_at,
                 (SELECT COUNT(*) FROM room_members rm WHERE rm.room_id = r.id) as member_count 
                 FROM rooms r
-                WHERE r.user_id = :user_id";
+                WHERE r.user_id = :user_id AND r.closed = 0";
 
         $params = [':user_id' => $userId];
 
